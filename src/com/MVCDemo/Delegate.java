@@ -43,7 +43,8 @@ public class Delegate {
         FailOnException(new ExceptionalRunnable() {
             @Override
             public void run() throws Exception {
-                result.add(exceptionalRunnable.run());
+                TResult runnableResult = exceptionalRunnable.run();
+                result.add(runnableResult);
             }
         });
         return From.SetGetSingle(result);

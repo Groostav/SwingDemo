@@ -17,7 +17,10 @@ public class Bootstrapper {
         MVCDemoController masterController = new MVCDemoController(factory, eventBus);
 
         JFrame frame = factory.makeParentFrame();
+
         frame.add(masterController.getView());
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 }

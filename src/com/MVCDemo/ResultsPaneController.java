@@ -19,6 +19,6 @@ public class ResultsPaneController implements Controller{
 
     @Override
     public JComponent getView() {
-        return new JPanel();
+        return view;
     }
 }

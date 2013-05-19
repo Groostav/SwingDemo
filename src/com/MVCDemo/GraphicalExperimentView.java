@@ -8,9 +8,6 @@ import java.awt.*;
  */
 public class GraphicalExperimentView extends Component {
 
-    public GraphicalExperimentView(){
-        int x = 4;
-    }
     @Override
     public void paint(Graphics g){
         Graphics2D graphics2D = (Graphics2D)g;

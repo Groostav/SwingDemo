@@ -22,14 +22,17 @@ public class MVCDemoView extends JPanel{
 
         menuBarWrapper = new JPanel(){{
             setPreferredSize(DisplayValues.MenuBarWrapperSize);
+            setLocation(DisplayValues.MenuLocation);
         }};
 
         bodyWrapper = new JPanel(){{
             setPreferredSize(DisplayValues.MainBodyArea);
+            setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         }};
 
-        this.add(menuBarWrapper);
-        this.add(bodyWrapper);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(menuBarWrapper);
+        add(bodyWrapper);
 
         setMenuBar(ViewFactory.emptyComponent);
         setExperimentPanel(ViewFactory.emptyComponent);
@@ -42,7 +45,6 @@ public class MVCDemoView extends JPanel{
 
     public void setMenuBar(JComponent menuBar) {
         setOrPushToIndex(menuBarWrapper, menuBar, 0);
-        menuBarWrapper.setLocation(new Point(0,0));
     }
 
     public JComponent getResultsPanel() {

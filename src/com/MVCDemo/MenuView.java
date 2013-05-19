@@ -13,31 +13,28 @@ public class MenuView extends JMenuBar {
         super();
         setLocation(new Point(0,0));
 
-        final JMenu file = new JMenu(FileMenuTitle){{
+        JMenu file = new JMenu(FileMenuTitle){{
             add(new JMenuItem(FirstMenuOptionText));
             add(new JMenuItem(SecondMenuOptionText));
             add(new JMenuItem(ThirdMenuOptionText));
         }};
 
-        final JMenu edit = new JMenu(EditMenuTitle){{
+        JMenu edit = new JMenu(EditMenuTitle){{
             add(new JMenuItem(FirstMenuOptionText));
             add(new JMenuItem(SecondMenuOptionText));
             add(new JMenuItem(ThirdMenuOptionText));
         }};
 
-        final JMenu export = new JMenu(ExportMenuTitle){{
+        JMenu export = new JMenu(ExportMenuTitle){{
             add(new JMenuItem(ExportCSVMenuOptionText));
             add(new JMenuItem(ExportXMLMenuOptionText));
         }};
 
-        JMenuBar menuBar = new JMenuBar(){{
-            setPreferredSize(MenuBarSize);
-            setBackground(Color.LIGHT_GRAY);
-            add(file);
-            add(edit);
-            add(export);
-        }};
-
-        this.add(menuBar);
+        setPreferredSize(MenuBarSize);
+        setLocation(MenuLocation);
+        setBackground(Color.LIGHT_GRAY);
+        add(file);
+        add(edit);
+        add(export);
     }
 }
