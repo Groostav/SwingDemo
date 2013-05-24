@@ -26,7 +26,12 @@ public class LinqingList<TElement> extends ArrayList<TElement> {
     }
 
     public TElement Single(){
-        return Single(Constraint.<TElement>GetTautology());
+        return Single(new Constraint<TElement>() {
+            @Override
+            public boolean isOK(TElement element) {
+                return true;
+            }
+        });
     }
     public TElement Single(Constraint<TElement> uniqueConstraint){
 

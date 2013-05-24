@@ -1,5 +1,7 @@
 package com.MVCDemo;
 
+import com.adamtaft.eb.EventBus;
+
 import javax.swing.*;
 
 /**

@@ -1,5 +1,6 @@
 package com.MVCDemo;
 
+import com.adamtaft.eb.*;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,7 +14,7 @@ public class Bootstrapper {
 
     public static void main(String[] args){
         ViewFactory factory = new ViewFactory();
-        EventBus eventBus = new EventBus();
+        EventBus eventBus = new BasicEventBus();
         MVCDemoController masterController = new MVCDemoController(factory, eventBus);
 
         JFrame frame = factory.makeParentFrame();

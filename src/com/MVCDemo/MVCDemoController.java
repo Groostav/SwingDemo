@@ -1,5 +1,7 @@
 package com.MVCDemo;
 
+import com.adamtaft.eb.EventBus;
+
 /**
  * @author Geoff on 14/05/13
  */
