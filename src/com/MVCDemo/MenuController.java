@@ -1,6 +1,6 @@
 package com.MVCDemo;
 
-import com.adamtaft.eb.EventBus;
+import com.google.common.eventbus.EventBus;
 
 import javax.swing.*;
 

@@ -2,24 +2,18 @@
 
 package com.MVCDemo;
 
-import java.awt.event.ActionEvent;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.*;
+import com.google.common.eventbus.*;
 
-import com.adamtaft.eb.BasicEventBus;
-import com.adamtaft.eb.EventBus;
-import com.adamtaft.eb.EventBusService;
-import com.adamtaft.eb.EventHandler;
+import java.awt.event.ActionEvent;
 
 public class SimpleExample {
 
-    @EventHandler
+    @Subscribe
     public void handleString(String evt) {
         System.out.println("handleString called: " + evt);
     }
 
-    @EventHandler
+    @Subscribe
     public void handleActionEvent(ActionEvent evt) {
         System.out.println("handleActionEvent called: " + evt);
     }
@@ -31,29 +25,23 @@ public class SimpleExample {
 
         // subscribe it to the EventBus
 
-        EventBus EventBusService = new BasicEventBus(new BlockingExecutor(), /*waitForHandlers*/true);
-        EventBusService.subscribe(se);
+        EventBus eventBus = new EventBus();
+        eventBus.register(se);
 
         // publish some events to the bus.
-        EventBusService.publish("Some String Event");
-        EventBusService.publish(new ActionEvent("Fake Action Event Source", -1, "Fake Command"));
+        eventBus.post("Some String Event");
+        eventBus.post(new ActionEvent("Fake Action Event Source", -1, "Fake Command"));
 
         // this shouldn't be seen, since no handler is interested in Object
-        EventBusService.publish(new Object());
-
-        // wait here to ensure all events (above) have been pushed out before
-        // unsubscribing.  Unsubscribe may happen before the event is delivered.
-        while (EventBusService.hasPendingEvents()) {
-            Thread.sleep(50);
-        }
+        eventBus.post(new Object());
 
         // don't forget to unsubscribe if you're done.
         // not required in this case, since the program ends here anyway.
-        EventBusService.unsubscribe(se);
+        eventBus.unregister(se);
 
         // Future messages shouldn't be seen by the SimpleExample handler after
         // being unsubscribed.
-        EventBusService.publish("This event should not be seen after the unsubscribe call.");
+        eventBus.post("This event should not be seen after the unsubscribe call.");
 
     }
 
