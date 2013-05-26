@@ -12,8 +12,7 @@ public class Bootstrapper {
 
     public static void main(String[] args){
         ViewFactory factory = new ViewFactory();
-        EventBus eventBus = null;
-        if(1 == 1) throw new RuntimeException();
+        EventBus eventBus = new EventBus();
 
         MVCDemoController masterController = new MVCDemoController(factory, eventBus);
 

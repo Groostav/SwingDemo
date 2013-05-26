@@ -18,6 +18,7 @@ public class MenuController implements Controller {
         this.viewFactory = viewFactory;
         this.eventBus = eventBus;
 
+        this.eventBus.register(this);
         this.view = viewFactory.make(MenuView.class);
     }
 

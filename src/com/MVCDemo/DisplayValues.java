@@ -14,9 +14,13 @@ public class DisplayValues {
     public static final String ExportMenuTitle = "Export";
     public static final String ExportCSVMenuOptionText = "to CSV";
     public static final String ExportXMLMenuOptionText = "to XML";
+    public static final String ResultsViewTitle = "Results";
+    public static final String RSquaredTitle = "R-Squared";
+    public static final String AverageTitle = "Average";
+    public static final String ElapsedTimeTitle = "Elapsed Time";
 
     public static final Dimension FrameSize =           new ConstDimension(600, 400);
-    public static final Dimension MenuBarSize =         new ConstDimension(590, 20);
+    public static final Dimension MenuBarSize =         new ConstDimension(590, 22);
     public static final Dimension MenuBarWrapperSize =  embiggen(MenuBarSize, new Dimension(0, 4));
     public static final Dimension MainBodyArea =        new ConstDimension(590, 370);
     public static final Dimension ExparimentBoxSize =   new ConstDimension(2 * FrameSize.width / 3,
@@ -29,13 +33,4 @@ public class DisplayValues {
         return new ConstDimension(baseDimension.width + delta.width, baseDimension.height + delta.height);
     }
 
-
-    public static class ConstDimension extends Dimension{
-        public ConstDimension(int width, int height){
-            super(width, height);
-        }
-        @Override public void setSize(int width, int height) {
-            assert false : "immutable dimension";
-        }
-    }
 }

@@ -9,11 +9,22 @@ import java.awt.*;
  */
 public class ExperimentView extends JPanel{
 
+    private final GraphicalExperimentView graphicalExperimentView;
+
     public ExperimentView(){
         setBackground(Color.LIGHT_GRAY);
         setBorder(new EtchedBorder(Color.BLACK, Color.WHITE));
         setPreferredSize(DisplayValues.ExparimentBoxSize);
-        add(new GraphicalExperimentView());
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.graphicalExperimentView = new GraphicalExperimentView();
+        add(this.graphicalExperimentView);
     }
+
+    public GraphicalExperimentView getGraphicalExperimentView(){
+        return graphicalExperimentView;
+    }
+
+
 
 }

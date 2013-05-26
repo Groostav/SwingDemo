@@ -11,7 +11,6 @@ import static com.MVCDemo.DisplayValues.*;
 public class MenuView extends JMenuBar {
     public MenuView(){
         super();
-        setLocation(new Point(0,0));
 
         JMenu file = new JMenu(FileMenuTitle){{
             add(new JMenuItem(FirstMenuOptionText));

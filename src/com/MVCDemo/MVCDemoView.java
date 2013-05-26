@@ -2,6 +2,7 @@ package com.MVCDemo;
 
 import javax.swing.*;
 import java.awt.*;
+import static com.MVCDemo.MVCDemoViewUtilities.*;
 
 /**
  * @author Geoff on 14/05/13
@@ -62,19 +63,5 @@ public class MVCDemoView extends JPanel{
     public void setExperimentPanel(JComponent experimentPanel) {
         setOrPushToIndex(bodyWrapper, experimentPanel, 0);
     }
-
-    private void setOrPushToIndex(Container container, JComponent resultsPanel, int targetIndex) {
-        if (targetIndex < container.getComponentCount()){
-            container.remove(targetIndex);
-            container.add(resultsPanel, targetIndex);
-        }
-        else if (container.getComponentCount() == targetIndex){
-            container.add(resultsPanel, -1);
-        }
-        else{
-            throw new IllegalArgumentException("target index was more than 1 greater than the size of the list; " +
-                    "could not set the element at that index as that index is out of bounds, and a push of the " +
-                    "element into the container would not bring the container to the required size.");
-        }
-    }
 }
+

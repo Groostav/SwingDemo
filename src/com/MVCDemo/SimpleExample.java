@@ -3,19 +3,18 @@
 package com.MVCDemo;
 
 import com.google.common.eventbus.*;
-
 import java.awt.event.ActionEvent;
 
 public class SimpleExample {
 
     @Subscribe
-    public void handleString(String evt) {
-        System.out.println("handleString called: " + evt);
+    public void On(String evt) {
+        System.out.println("On String called: " + evt);
     }
 
     @Subscribe
-    public void handleActionEvent(ActionEvent evt) {
-        System.out.println("handleActionEvent called: " + evt);
+    public void On(ActionEvent evt) {
+        System.out.println("On ActionEvent called: " + evt);
     }
 
 

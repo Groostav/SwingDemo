@@ -8,13 +8,21 @@ import java.awt.*;
  */
 public class GraphicalExperimentView extends Component {
 
+    private Rectangle rect;
+
+    public GraphicalExperimentView(){
+        rect = new Rectangle(5, 5, 50, 50);
+    }
+
     @Override
     public void paint(Graphics g){
         Graphics2D graphics2D = (Graphics2D)g;
-
-        Rectangle rect = new Rectangle(5, 5, 50, 50);
         graphics2D.setColor(Color.RED);
         graphics2D.draw(rect);
         graphics2D.fill(rect);
+    }
+
+    public Rectangle getRect() {
+        return rect;
     }
 }
