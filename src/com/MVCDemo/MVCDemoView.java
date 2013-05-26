@@ -35,9 +35,9 @@ public class MVCDemoView extends JPanel{
         add(menuBarWrapper);
         add(bodyWrapper);
 
-        setMenuBar(ViewFactory.emptyComponent);
-        setExperimentPanel(ViewFactory.emptyComponent);
-        setResultsPanel(ViewFactory.emptyComponent);
+        setMenuBar(LiveViewFactory.emptyComponent);
+        setExperimentPanel(LiveViewFactory.emptyComponent);
+        setResultsPanel(LiveViewFactory.emptyComponent);
     }
 
     public JComponent getMenuBar() {

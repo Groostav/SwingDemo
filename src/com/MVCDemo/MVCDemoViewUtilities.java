@@ -5,6 +5,10 @@ import java.awt.*;
 
 public class MVCDemoViewUtilities
 {
+    public static String doCoolTransformToGetRSquared(WorkspaceObjectMovedEvent event) {
+        return "" + (event.getNewLocation().getX() * event.getNewLocation().getY());
+    }
+
     public static void setOrPushToIndex(Container container, JComponent component, int targetIndex) {
         if (targetIndex < container.getComponentCount()){
             container.remove(targetIndex);

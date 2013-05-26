@@ -9,13 +9,13 @@ import java.util.Calendar;
 /**
  * @author Geoff on 14/05/13
  */
-public class ResultsPaneController extends ControllerBase implements Controller{
+public class ResultsPaneController extends ControllerBase{
 
     private final ResultsView view;
     private int time;
 
-    public ResultsPaneController(ViewFactory viewFactory, EventBus eventBus) {
-        super(viewFactory, eventBus);
+    public ResultsPaneController(ControllerFactory controllerFactory, ViewFactory viewFactory, EventBus eventBus) {
+        super(controllerFactory, viewFactory, eventBus);
 
         this.view = viewFactory.make(ResultsView.class);
 
@@ -52,12 +52,8 @@ public class ResultsPaneController extends ControllerBase implements Controller{
 
     @Subscribe
     public void On(WorkspaceObjectMovedEvent event){
-        String newLocationText = doCoolTransformToGetRSquared(event);
-        this.view.getRSquaredBox().setValueText(newLocationText);
-    }
-
-    private String doCoolTransformToGetRSquared(WorkspaceObjectMovedEvent event) {
-        return "" + (event.getNewLocation().getX() * event.getNewLocation().getY());
+        String newRSquaredText = MVCDemoViewUtilities.doCoolTransformToGetRSquared(event);
+        view.getRSquaredBox().setValueText(newRSquaredText);
     }
 
     @Override

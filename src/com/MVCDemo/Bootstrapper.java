@@ -1,6 +1,8 @@
 package com.MVCDemo;
 
 import com.google.common.eventbus.EventBus;
+import org.picocontainer.*;
+import org.picocontainer.defaults.DefaultPicoContainer;
 
 import javax.swing.*;
 
@@ -8,19 +10,38 @@ import javax.swing.*;
 /**
  * @author Geoff on 14/05/13
  */
+
 public class Bootstrapper {
 
+    private static MutablePicoContainer container;
+
     public static void main(String[] args){
-        ViewFactory factory = new ViewFactory();
-        EventBus eventBus = new EventBus();
 
-        MVCDemoController masterController = new MVCDemoController(factory, eventBus);
+        container = new DefaultPicoContainer();
 
-        JFrame frame = factory.makeParentFrame();
+        registerComponents();
 
-        frame.add(masterController.getView());
+        ControllerFactory controllerFactory = (ControllerFactory) container.getComponentInstanceOfType(ControllerFactory.class);
+        LiveViewFactory viewFactory = (LiveViewFactory) container.getComponentInstanceOfType(ViewFactory.class);
+
+        Controller masterController = controllerFactory.make(MVCDemoController.class);
+
+        JFrame frame = viewFactory.makeParentFrame();
+
+        ConfigureFrame(masterController.getView(), frame);
+    }
+
+    private static void ConfigureFrame(JComponent content, JFrame frame) {
+        frame.add(content);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
+    }
+
+    private static void registerComponents() {
+        container.registerComponentInstance(container);
+        container.registerComponentImplementation(EventBus.class);
+        container.registerComponentImplementation(ViewFactory.class, LiveViewFactory.class);
+        container.registerComponentImplementation(ControllerFactory.class, LiveControllerFactory.class);
     }
 }

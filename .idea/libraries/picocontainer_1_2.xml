@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="simpleeventbus-1.x">
+  <library name="picocontainer-1.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/simpleeventbus-1.x.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/picocontainer-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

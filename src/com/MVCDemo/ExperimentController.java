@@ -10,16 +10,13 @@ import java.awt.event.MouseEvent;
 /**
  * @author Geoff on 14/05/13
  */
-public class ExperimentController implements Controller{
-    private final ViewFactory viewFactory;
-    private final EventBus eventBus;
+public class ExperimentController extends ControllerBase{
 
     private ExperimentView view;
 
-    public ExperimentController(ViewFactory viewFactory, EventBus eventBus) {
+    public ExperimentController(ControllerFactory controllerFactory, ViewFactory viewFactory, EventBus eventBus) {
+        super(controllerFactory, viewFactory, eventBus);
 
-        this.viewFactory = viewFactory;
-        this.eventBus = eventBus;
         this.view = viewFactory.make(ExperimentView.class);
 
         attachExperimentDraggingListener();

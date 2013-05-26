@@ -49,4 +49,7 @@ public class Delegate {
         });
         return From.SetGetSingle(result);
     }
+    public static void LogAndFail(Exception exception){
+        throw new RuntimeException();
+    }
 }
