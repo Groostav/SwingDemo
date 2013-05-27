@@ -38,6 +38,7 @@ public class ResultsPaneControllerFixture extends FixtureBase {
         eventBus.post(new WorkspaceObjectMovedEvent(newLocation));
 
         //assert
+        //test includes independent verification of logic in MVCDemoViewUtilities.doCoolTransformToGetRSquared()
         String expectedString = Double.toString(newLocation.getX() * newLocation.getY());
         verify(controller.getView().getRSquaredBox()).setValueText(expectedString);
     }
@@ -64,7 +65,7 @@ public class ResultsPaneControllerFixture extends FixtureBase {
     @Test //another thread running
     public void when_waiting_for_time_to_pass(){
         //setup
-        view = viewFactory.preconfigure(ResultsView.class, toRecurisvelyMockViewObjectTree());
+        view = viewFactory.preconfigure(ResultsView.class);
         when(view.getRunningTimeBox()).thenReturn(new NamedValueView("testing-running-time-box"));
         when(view.getRSquaredBox()).thenReturn(new NamedValueView("testing-rsquared-box"));
         when(view.getRunButton()).thenReturn(new JButton());
