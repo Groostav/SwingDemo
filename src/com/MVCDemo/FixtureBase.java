@@ -1,7 +1,7 @@
 package com.MVCDemo;
 
-import com.google.common.eventbus.EventBus;
-import org.junit.Before;
+import org.mockito.MockSettings;
+import org.mockito.Mockito;
 
 public class FixtureBase {
 
@@ -9,10 +9,14 @@ public class FixtureBase {
     protected FakeControllerFactory controllerFactory;
     protected CountingEventBus eventBus;
 
-    public void setup(){
+    protected void setup(){
         eventBus = new CountingEventBus();
         controllerFactory = new FakeControllerFactory();
         viewFactory = new FakeViewFactory();
+    }
+
+    protected MockSettings toRecurisvelyMockViewObjectTree(){
+        return Mockito.withSettings().defaultAnswer(Mockito.RETURNS_DEEP_STUBS);
     }
 }
 

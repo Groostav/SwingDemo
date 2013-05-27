@@ -21,8 +21,12 @@ public class ResultsView extends JComponent{
         initializeRSquaredBox(new NamedValueView(RSquaredTitle));
         initializeAverageBox(new NamedValueView(AverageTitle));
         initializeRunningTimeBox(new NamedValueView(ElapsedTimeTitle));
+        initializeRunButton(new JButton(RunButtonIdleText));
     }
 
+    private void initializeRunButton(JButton jButton) {
+        setOrPushToIndex(this, jButton, 4);
+    }
     private void initializeTitle(TitleView title){
         setOrPushToIndex(this, title, 0);
     }
@@ -38,6 +42,9 @@ public class ResultsView extends JComponent{
         rSquaredBox.setValueText("0");
     }
 
+    public JButton getRunButton(){
+        return (JButton)this.getComponent(4);
+    }
     public NamedValueView getRunningTimeBox(){
         return (NamedValueView)this.getComponent(3);
     }

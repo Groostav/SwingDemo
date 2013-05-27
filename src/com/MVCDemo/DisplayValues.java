@@ -18,6 +18,8 @@ public class DisplayValues {
     public static final String RSquaredTitle = "R-Squared";
     public static final String AverageTitle = "Average";
     public static final String ElapsedTimeTitle = "Elapsed Time";
+    public static final String RunButtonIdleText = "Run";
+    public static final String RunButtonRunningText = "Running";
 
     public static final Dimension FrameSize =           new ConstDimension(600, 400);
     public static final Dimension MenuBarSize =         new ConstDimension(590, 22);
@@ -28,6 +30,7 @@ public class DisplayValues {
     public static final Dimension ResultsPanelSize =    new ConstDimension(1 * FrameSize.width / 3, ExparimentBoxSize.height);
 
     public static final Point MenuLocation = new Point(0,0);
+
 
     private static ConstDimension embiggen(Dimension baseDimension, Dimension delta) {
         return new ConstDimension(baseDimension.width + delta.width, baseDimension.height + delta.height);

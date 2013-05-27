@@ -24,7 +24,7 @@ public abstract class FakeFactory<TProductBase>{
     }
 
     private <TSpecializedProduct extends TProductBase> TSpecializedProduct mockAndCache(Class<TSpecializedProduct> desiredProduct, MockSettings settings) {
-        TSpecializedProduct product = mock(desiredProduct);
+        TSpecializedProduct product = mock(desiredProduct, settings);
         alreadyMocked.put(desiredProduct, product);
         return product;
     }

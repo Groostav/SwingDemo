@@ -2,7 +2,6 @@ package com.MVCDemo;
 
 import com.google.common.eventbus.EventBus;
 
-import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -19,10 +18,10 @@ public class ExperimentController extends ControllerBase{
 
         this.view = viewFactory.make(ExperimentView.class);
 
-        attachExperimentDraggingListener();
+        listenForUserMovingExperiment();
     }
 
-    private void attachExperimentDraggingListener() {
+    private void listenForUserMovingExperiment() {
         final GraphicalExperimentView view = getView().getGraphicalExperimentView();
 
         view.addMouseMotionListener(new MouseInputAdapter() {

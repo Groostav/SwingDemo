@@ -13,11 +13,4 @@ public class LiveViewFactory implements ViewFactory{
             @Override public TView run() throws Exception {return targetViewClass.newInstance();}
         });
     }
-
-    public JFrame makeParentFrame() {
-        JFrame frame = new JFrame(DisplayValues.ApplicationTitle);
-        frame.setSize(DisplayValues.FrameSize);
-        frame.setVisible(true);
-        return frame;
-    }
 }

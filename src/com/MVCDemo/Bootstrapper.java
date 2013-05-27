@@ -18,15 +18,12 @@ public class Bootstrapper {
     public static void main(String[] args){
 
         container = new DefaultPicoContainer();
-
         registerComponents();
 
         ControllerFactory controllerFactory = (ControllerFactory) container.getComponentInstanceOfType(ControllerFactory.class);
-        LiveViewFactory viewFactory = (LiveViewFactory) container.getComponentInstanceOfType(ViewFactory.class);
-
         Controller masterController = controllerFactory.make(MVCDemoController.class);
 
-        JFrame frame = viewFactory.makeParentFrame();
+        JFrame frame = new JFrame();
 
         ConfigureFrame(masterController.getView(), frame);
     }

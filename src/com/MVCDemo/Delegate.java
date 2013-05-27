@@ -1,10 +1,7 @@
 package com.MVCDemo;
 
-import java.lang.ref.Reference;
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Geoff on 14/05/13
@@ -27,7 +24,7 @@ public class Delegate {
                 result.add(exceptionalRunnable.run());
             }
         });
-        return result.isEmpty() ? null : From.SetGetSingle(result);
+        return result.isEmpty() ? null : FromSet.getSingleElement(result);
     }
 
     public static void FailOnException(ExceptionalRunnable exceptionalRunnable){
@@ -47,7 +44,7 @@ public class Delegate {
                 result.add(runnableResult);
             }
         });
-        return From.SetGetSingle(result);
+        return FromSet.getSingleElement(result);
     }
     public static void LogAndFail(Exception exception){
         throw new RuntimeException();
