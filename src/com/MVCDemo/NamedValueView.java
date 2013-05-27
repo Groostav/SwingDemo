@@ -8,8 +8,8 @@ import java.awt.*;
  */
 public class NamedValueView extends JPanel {
 
-    JLabel title;
-    JTextField value;
+    private JLabel title;
+    private JTextField value;
 
     public NamedValueView(String title) {
         GridBagLayout layout = new GridBagLayout();
@@ -46,6 +46,12 @@ public class NamedValueView extends JPanel {
     }
     public void setValueText(String text){
         value.setText(text);
+    }
+    public String getTitleText(){
+        return title.getText();
+    }
+    public String getValueText(){
+        return value.getText();
     }
 
 }

@@ -33,6 +33,7 @@ public class ResultsPaneController extends ControllerBase{
                 }
             }
         });
+        updateTime();
         thread.start();
     }
 
@@ -57,7 +58,7 @@ public class ResultsPaneController extends ControllerBase{
     }
 
     @Override
-    public JComponent getView() {
+    public ResultsView getView() {
         return view;
     }
 }
