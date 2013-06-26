@@ -11,10 +11,16 @@ import java.awt.event.MouseEvent;
  */
 public class ExperimentController extends ControllerBase{
 
+    private final ExperimentsResultsModel model;
     private ExperimentView view;
 
-    public ExperimentController(ControllerFactory controllerFactory, ViewFactory viewFactory, EventBus eventBus) {
+    public ExperimentController(ControllerFactory controllerFactory,
+                                ViewFactory viewFactory,
+                                EventBus eventBus,
+                                ExperimentsResultsModel model) {
+
         super(controllerFactory, viewFactory, eventBus);
+        this.model = model;
 
         this.view = viewFactory.make(ExperimentView.class);
 
@@ -30,6 +36,7 @@ public class ExperimentController extends ControllerBase{
                 Point newLocation = event.getPoint();
                 view.getRect().setLocation(event.getPoint());
                 view.repaint();
+                model.setN0(event.getX());
                 eventBus.post(new WorkspaceObjectMovedEvent(newLocation));
             }
         });

@@ -9,12 +9,12 @@ public class SimpleExample {
 
     @Subscribe
     public void On(String evt) {
-        System.out.println("On String called: " + evt);
+        System.out.println("literallyAnythingIwant String called: " + evt);
     }
 
     @Subscribe
     public void On(ActionEvent evt) {
-        System.out.println("On ActionEvent called: " + evt);
+        System.out.println("literallyAnythingIwant ActionEvent called: " + evt);
     }
 
 

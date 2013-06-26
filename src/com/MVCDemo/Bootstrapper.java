@@ -31,6 +31,7 @@ public class Bootstrapper {
     private static void ConfigureFrame(JComponent content, JFrame frame) {
         frame.add(content);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setMinimumSize(DisplayValues.FrameSize);
         frame.setVisible(true);
         frame.setResizable(false);
     }

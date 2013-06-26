@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import static com.MVCDemo.Delegate.FailOnException;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import static com.MVCDemo.DisplayValues.*;
 
 
 @RunWith(JUnit4.class)
@@ -28,7 +29,7 @@ public class ResultsPaneControllerFixture extends FixtureBase {
     }
 
     @Test //event on our event bus
-    public void when_rSquared_value_changes(){
+    public void when_workspace_object_moves(){
         //setup
         viewFactory.preconfigure(ResultsView.class, toRecurisvelyMockViewObjectTree());
         controller = new ResultsPaneController(controllerFactory, viewFactory, eventBus);
@@ -43,6 +44,20 @@ public class ResultsPaneControllerFixture extends FixtureBase {
         verify(controller.getView().getRSquaredBox()).setValueText(expectedString);
     }
 
+    @Test
+    public void when_the_user_has_not_loaded_a_configuration(){
+        //setup
+        view = viewFactory.preconfigure(ResultsView.class, toRecurisvelyMockViewObjectTree());
+        JButton button = new JButton();
+        when(view.getRunButton()).thenReturn(button);
+
+        //act
+        controller = new ResultsPaneController(controllerFactory, viewFactory, eventBus);
+
+        //assert
+        assertEquals(RunButtonIdleText, button.getText());
+    }
+
     @Test //event on AWT listener
     public void when_the_run_button_is_hit(){
         //setup
@@ -55,10 +70,11 @@ public class ResultsPaneControllerFixture extends FixtureBase {
         //act
         LinqingList<MouseListener> listeners = new LinqingList<MouseListener>(controller.getView().getRunButton().getMouseListeners());
         MouseListener listener = listeners.whereTypeIs(MouseInputAdapter.class).Single();
-        listener.mouseClicked(new MouseEvent(runButton, 0, 0, MouseEvent.MOUSE_CLICKED, 0, 0, 1, false));
+        //I have searched for a goddamn listener-event package on the intertubes and I cant find one. Too many args.
+        listener.mouseClicked(new MouseEvent(runButton, 0, 0, MouseEvent.BUTTON1_DOWN_MASK, 0, 0, 1, false));
 
         //assert
-        assertEquals(DisplayValues.RunButtonRunningText, runButton.getText());
+        assertEquals(RunButtonRunningText, runButton.getText());
         eventBus.shouldHaveRecieved(OptimizationStartedEvent.class);
     }
 
@@ -71,22 +87,11 @@ public class ResultsPaneControllerFixture extends FixtureBase {
         when(view.getRunButton()).thenReturn(new JButton());
 
         controller = new ResultsPaneController(controllerFactory, viewFactory, eventBus);
-        FailOnException(new ExceptionalRunnable() {
-            @Override
-            public void run() throws Exception {
-                //need to let the timer thread start
-                Thread.sleep(100);
-            }
-        });
+        waitForTimerToStart();
         int startTime = Integer.parseInt(controller.getView().getRunningTimeBox().getValueText());
 
         //act
-        FailOnException(new ExceptionalRunnable() {
-            @Override
-            public void run() throws Exception {
-                Thread.sleep(1000);
-            }
-        });
+        waitForASecond();
 
         //assert
         int endTime = Integer.parseInt(controller.getView().getRunningTimeBox().getValueText());
@@ -94,4 +99,21 @@ public class ResultsPaneControllerFixture extends FixtureBase {
         assertEquals(endTime, startTime + 1);
     }
 
+    private void waitForASecond() {
+        FailOnException(new ExceptionalRunnable() {
+            @Override
+            public void run() throws Exception {
+                Thread.sleep(1000);
+            }
+        });
+    }
+
+    private void waitForTimerToStart() {
+        FailOnException(new ExceptionalRunnable() {
+            @Override
+            public void run() throws Exception {
+                Thread.sleep(100);
+            }
+        });
+    }
 }

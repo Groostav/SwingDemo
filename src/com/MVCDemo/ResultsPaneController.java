@@ -26,11 +26,13 @@ public class ResultsPaneController extends ControllerBase{
 
     private void initializeListenerForRunButtonClicks() {
         final JButton button = view.getRunButton();
+        button.setText(DisplayValues.RunButtonIdleText);
+
         button.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 button.setText(DisplayValues.RunButtonRunningText);
-                eventBus.post(new OptimizationStartedEvent());
+                eventBus.post(new OptimizationStartedEvent(time));
             }
         });
     }
@@ -64,7 +66,7 @@ public class ResultsPaneController extends ControllerBase{
     }
 
     @Subscribe
-    public void On(WorkspaceObjectMovedEvent event){
+    public void literallyAnythingIwant(WorkspaceObjectMovedEvent event){
         String newRSquaredText = MVCDemoViewUtilities.doCoolTransformToGetRSquared(event);
         view.getRSquaredBox().setValueText(newRSquaredText);
     }
